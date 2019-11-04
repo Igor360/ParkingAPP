@@ -6,7 +6,7 @@ namespace WebApplication1.Services
 {
     public interface IService<T> where T : Model
     {
-        IEnumerator<T> all();
+        IEnumerable<T> all();
 
         bool create(T entity);
 

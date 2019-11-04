@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
-    public class ParkingTicketsService : IParkingTicketsService<ParkingTicket>
+    public class ParkingTicketsService : IParkingTicketsService
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
 
@@ -12,9 +13,9 @@ namespace WebApplication1.Services
             _repositoryWrapper = repositoryWrapper;
         }
 
-        public IEnumerator<ParkingTicket> all()
+        public IEnumerable<ParkingTicket> all()
         {
-            return this._repositoryWrapper.ParkingTicketsRepository.All().GetEnumerator();
+            return this._repositoryWrapper.ParkingTicketsRepository.All().AsEnumerable();
         }
 
         public bool create(ParkingTicket entity)

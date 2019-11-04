@@ -20,6 +20,8 @@ namespace WebApplication1.Services
 
         IParkingTicketsRepository ParkingTicketsRepository { get; }
 
+        IUserRepository UserRepository { get; }
+
         void Save();
     }
 }

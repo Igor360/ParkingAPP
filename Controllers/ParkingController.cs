@@ -1,17 +1,27 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Responses;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ParkingController : ControllerBase
     {
-        [HttpGet]
-        public Response<Parking> getAll()
+        private readonly IParkingService _service;
+
+        public ParkingController(IParkingService service)
         {
-            return new Response<Parking>("success", "good");
+            _service = service;
+        }
+
+        [HttpGet]
+        public IEnumerable<Parking> GetAll()
+        {
+            return _service.all();
         }
     }
 }

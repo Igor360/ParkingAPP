@@ -21,5 +21,6 @@ namespace WebApplication1.Models
         
         public virtual ICollection<Company> companies { get; set; }
 
+        public virtual User User { get; set; }
     }
 }

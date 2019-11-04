@@ -7,7 +7,7 @@ using WebApplication1.Repository.Base;
 
 namespace WebApplication1.Services
 {
-    public class ParkingService : IParkingService<Parking>
+    public class ParkingService : IParkingService
     {
 
         private readonly IRepositoryWrapper _repositoryWrapper;
@@ -17,9 +17,9 @@ namespace WebApplication1.Services
             _repositoryWrapper = repositoryWrapper;
         }
 
-        public IEnumerator<Parking> all()
+        public IEnumerable<Parking> all()
         {
-            return this._repositoryWrapper.ParkingRepository.All().GetEnumerator();
+            return this._repositoryWrapper.ParkingRepository.All().AsEnumerable();
         }
 
         public bool create(Parking entity)

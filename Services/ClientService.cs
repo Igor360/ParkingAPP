@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
-    public class ClientService : IClientService<Client>
+    public class ClientService : IClientService
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
 
@@ -12,9 +13,9 @@ namespace WebApplication1.Services
             _repositoryWrapper = repositoryWrapper;
         }
 
-        public IEnumerator<Client> all()
+        public IEnumerable<Client> all()
         {
-            return this._repositoryWrapper.ClientsRepository.All().GetEnumerator();
+            return this._repositoryWrapper.ClientsRepository.All().AsEnumerable();
         }
 
         public bool create(Client entity)

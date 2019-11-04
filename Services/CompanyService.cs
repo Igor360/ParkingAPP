@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using WebApplication1.Models;
 using WebApplication1.Repository.Base;
 
 namespace WebApplication1.Services
 {
-    public class CompanyService : ICompanyService<Company>
+    public class CompanyService : ICompanyService
     {
         private readonly IRepositoryWrapper _repositoryWrapper;
 
@@ -13,9 +14,9 @@ namespace WebApplication1.Services
             _repositoryWrapper = repositoryWrapper;
         }
 
-        public IEnumerator<Company> all()
+        public IEnumerable<Company> all()
         {
-            return this._repositoryWrapper.CompanyRepository.All().GetEnumerator();
+            return this._repositoryWrapper.CompanyRepository.All().AsEnumerable();
         }
 
         public bool create(Company entity)

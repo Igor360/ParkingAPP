@@ -1,8 +1,9 @@
+using WebApplication1.Contexts;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
-    public interface IParkingPositionService<T> : IService<T> where T : Model
+    public interface IParkingPositionService : IService<ParkingPosition> 
     {
     }
 }

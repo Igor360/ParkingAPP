@@ -8,7 +8,7 @@ namespace WebApplication1.Repository.Base
 {
     public abstract class AbstractRepository<T> : IRepository<T> where T : Model
     {
-        private DbContext DbContext;
+        protected readonly DbContext DbContext;
 
         protected AbstractRepository(ParkingContext baseContext)
         {
