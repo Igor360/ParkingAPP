@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WebApplication1.Models;
 using WebApplication1.Repository.Base;
 
@@ -10,6 +11,11 @@ namespace WebApplication1.Services
         public ParkingPositionService(IRepositoryWrapper repositoryWrapper)
         {
             _repositoryWrapper = repositoryWrapper;
+        }
+
+        public IEnumerator<ParkingPosition> all()
+        {
+            return this._repositoryWrapper.ParkingPositionRepository.All().GetEnumerator();
         }
 
         public bool create(ParkingPosition entity)
