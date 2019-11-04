@@ -1,0 +1,85 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
+    "projectName": "WebApplication1",
+    "projectPath": "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
+    "outputPath": "/home/igor/RiderProjects/WebApplication1/WebApplication1/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "EntityFramework": {
+          "target": "Package",
+          "version": "[6.2.0, )"
+        },
+        "Microsoft.AspNetCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "Microsoft.AspNetCore.Razor.Design": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "MySql.Data": {
+          "target": "Package",
+          "version": "[8.0.17, )"
+        },
+        "MySql.Data.Entity": {
+          "target": "Package",
+          "version": "[7.0.7-m61, )"
+        },
+        "MySql.Data.EntityFramework": {
+          "target": "Package",
+          "version": "[8.0.17, )"
+        },
+        "MySql.Data.EntityFrameworkCore": {
+          "target": "Package",
+          "version": "[8.0.17, )"
+        },
+        "MySql.Data.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[8.0.17, )"
+        },
+        "MySql.Web": {
+          "target": "Package",
+          "version": "[8.0.17, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
