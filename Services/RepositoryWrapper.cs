@@ -16,6 +16,7 @@ namespace WebApplication1.Services
         private IParkingRepository _parkingRepository;
         private IParkingTicketsRepository _parkingTicketsRepository;
         private IUserRepository _userRepository;
+        private IParkingPricingRepository _parkingPricingRepository;
 
         public RepositoryWrapper(ParkingContext parkingContext)
         {
@@ -76,6 +77,15 @@ namespace WebApplication1.Services
 
         public IUserRepository UserRepository {
             get { return _userRepository ?? (_userRepository = new UserRepository(this._parkingContext)); }
+        }
+
+        public IParkingPricingRepository ParkingPricingRepository
+        {
+            get
+            {
+                return _parkingPricingRepository ??
+                       (_parkingPricingRepository = new ParkingPricingRepository(this._parkingContext));
+            }
         }
 
         public void Save()

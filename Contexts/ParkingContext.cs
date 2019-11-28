@@ -1,4 +1,4 @@
-using System.Data.Entity;
+using DbConfigurationType = System.Data.Entity.DbConfigurationTypeAttribute;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 using DbContext = Microsoft.EntityFrameworkCore.DbContext;
@@ -8,19 +8,24 @@ namespace WebApplication1.Contexts
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ParkingContext : DbContext
     {
-        public Microsoft.EntityFrameworkCore.DbSet<Parking> parkings { get; set; }
+        public DbSet<Parking> parking { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Client> clients { get; set; }
+        public DbSet<Client> client { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Car> cars { get; set; }
+        public DbSet<Car> car { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Cars> carses { get; set; }
+        public DbSet<Cars> cars { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<ParkingPosition> parkingPositions { get; set; }
+        public DbSet<ParkingPosition> parkingPosition { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<ParkingTicket> parkingTickets { get; set; }
+        public DbSet<ParkingTicket> parkingTicket { get; set; }
 
+        public DbSet<User> user { get; set; }
 
-        public ParkingContext(DbContextOptions<ParkingContext> options) : base(options) { }
+        public DbSet<ParkingPricing> parkingPricings { get; set; }
+        
+        public ParkingContext(DbContextOptions<ParkingContext> options) : base(options)
+        {
+        }
     }
 }

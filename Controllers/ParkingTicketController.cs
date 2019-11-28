@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services;
@@ -9,11 +8,11 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ParkingController : ControllerBase
+    public class ParkingTicketController : ControllerBase
     {
-        private readonly IParkingService _service;
+        private readonly IParkingTicketsService _service;
 
-        public ParkingController(IParkingService service)
+        public ParkingTicketController(IParkingTicketsService service)
         {
             _service = service;
         }
@@ -25,15 +24,15 @@ namespace WebApplication1.Controllers
         }
         
         [HttpPost]
-        public void Save([FromBody] Parking parking)
+        public void Save([FromBody] ParkingTicket parkingTicket)
         {
-            _service.create(parking);
+            _service.create(parkingTicket);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<IEnumerable> Put(int id, [FromBody] Parking parking)
+        public ActionResult<IEnumerable> Put(int id, [FromBody] ParkingTicket parkingTicket)
         {
-            if (parking.id != 0 && parking.id != id)
+            if (parkingTicket.id != 0 && parkingTicket.id != id)
             {
                 return new BadRequestObjectResult(new
                 {
@@ -41,9 +40,9 @@ namespace WebApplication1.Controllers
                 }) ;
             }
 
-            parking.id = id; 
-            _service.update(parking);
-            return Ok(parking);
+            parkingTicket.id = id;
+            _service.update(parkingTicket);
+            return Ok(parkingTicket);
         }
         
         [HttpDelete("{id}")]

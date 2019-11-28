@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -18,15 +19,44 @@ namespace WebApplication1.Controllers
 
         private readonly IMapper _mapper;
         
-        public UsersController(IUserService service)
+        public UsersController(IUserService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         
         [HttpGet]
-        public IEnumerable<User> Get()
+        public ActionResult<IEnumerable<User>> All()
         {
-            return _service.all();
+            return Ok(_service.all());
+        }
+        
+        [HttpPost]
+        public void Save([FromBody] User user)
+        {
+            _service.create(user);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<IEnumerable> Put(int id, [FromBody] User user)
+        {
+            if (user.id != 0 && user.id != id)
+            {
+                return new BadRequestObjectResult(new
+                {
+                    Message="Incorrect object ID",
+                }) ;
+            }
+
+            user.id = id;
+            _service.update(user);
+            return Ok(user);
+        }
+        
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _service.delete(id);
         }
         
         [AllowAnonymous]

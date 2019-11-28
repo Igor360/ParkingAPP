@@ -1,4 +1,6 @@
 using AutoMapper;
+using WebApplication1.Models;
+using WebApplication1.Requests;
 
 namespace WebApplication1.Helpers
 {
@@ -6,7 +8,8 @@ namespace WebApplication1.Helpers
     {
         public AutoMapperProfile()
         {
-            
+            CreateMap<AuthenticateRequest, User>();
+            CreateMap<RegisterRequest, User>();
         }
     }
 }

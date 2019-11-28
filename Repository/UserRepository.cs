@@ -14,14 +14,14 @@ namespace WebApplication1.Repository
 
         public User findByEmailAndPassword(string email, byte[] PasswordHash, byte[] PasswordSalt)
         {
-            return this.DbContext.Set<User>().Where(x =>
+            return this.DbContext.Set<User>().First(x =>
                 (x.Email == email || x.Name == email) && x.PasswordHash == PasswordHash &&
-                x.PasswordSalt == PasswordSalt).FirstAsync().Result;
+                x.PasswordSalt == PasswordSalt);
         }
 
         public User findByName(string name)
         {
-            return this.DbContext.Set<User>().Where(x => x.Name == name).FirstAsync().Result;
+            return this.DbContext.Set<User>().First(x => x.Name == name);
         }
     }
 }

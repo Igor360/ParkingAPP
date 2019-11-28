@@ -76,6 +76,8 @@ namespace WebApplication1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<int>("UserId");
+
                     b.Property<DateTime?>("createdAt")
                         .HasColumnName("created_at");
 
@@ -92,6 +94,9 @@ namespace WebApplication1.Migrations
                         .HasColumnName("updated_at");
 
                     b.HasKey("id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("client");
                 });
@@ -268,6 +273,40 @@ namespace WebApplication1.Migrations
                     b.ToTable("parking_ticket");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.User", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnName("email_confirmed");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
+
+                    b.Property<string>("Token");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateTime?>("updatedAt")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("id");
+
+                    b.ToTable("users");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Cars", b =>
                 {
                     b.HasOne("WebApplication1.Models.Car", "car")
@@ -277,6 +316,14 @@ namespace WebApplication1.Migrations
                     b.HasOne("WebApplication1.Models.Client", "client")
                         .WithMany("cars")
                         .HasForeignKey("clientid");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Client", b =>
+                {
+                    b.HasOne("WebApplication1.Models.User", "User")
+                        .WithOne("Client")
+                        .HasForeignKey("WebApplication1.Models.Client", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Company", b =>

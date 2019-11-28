@@ -22,6 +22,8 @@ namespace WebApplication1.Services
 
         IUserRepository UserRepository { get; }
 
+        IParkingPricingRepository ParkingPricingRepository { get; }
+        
         void Save();
     }
 }

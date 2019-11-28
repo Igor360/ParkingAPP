@@ -17,6 +17,8 @@ namespace WebApplication1.Models
         [Column("idNumber")]
         public string idNumber { get; set; }
 
+        public int UserId { get; set; }
+
         public virtual ICollection<Cars> cars { get; set; }
         
         public virtual ICollection<Company> companies { get; set; }

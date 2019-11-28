@@ -1,39 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Renci.SshNet.Messages.Authentication;
 using WebApplication1.Models;
+using WebApplication1.Repository;
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ParkingController : ControllerBase
+    public class CarsController : ControllerBase
     {
-        private readonly IParkingService _service;
+        private readonly ICarsService _service;
 
-        public ParkingController(IParkingService service)
+        public CarsController(ICarsService service)
         {
             _service = service;
         }
-
-        [HttpGet]
+        
+        [HttpGet] 
         public ActionResult<IEnumerable> All()
         {
             return Ok(_service.all());
         }
-        
+       
         [HttpPost]
-        public void Save([FromBody] Parking parking)
+        public void Save([FromBody] Cars car)
         {
-            _service.create(parking);
+            _service.create(car);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<IEnumerable> Put(int id, [FromBody] Parking parking)
+        public ActionResult<IEnumerable> Put(int id, [FromBody] Cars car)
         {
-            if (parking.id != 0 && parking.id != id)
+            if (car.id != 0 && car.id != id)
             {
                 return new BadRequestObjectResult(new
                 {
@@ -41,9 +42,9 @@ namespace WebApplication1.Controllers
                 }) ;
             }
 
-            parking.id = id; 
-            _service.update(parking);
-            return Ok(parking);
+            car.id = id;
+            _service.update(car);
+            return Ok(car);
         }
         
         [HttpDelete("{id}")]
