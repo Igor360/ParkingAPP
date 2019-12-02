@@ -1,44 +1,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
+using WebApplication1.Repository.ADO;
 
 namespace WebApplication1.Services
 {
     public class CarService : ICarService
     {
 
-        private readonly IRepositoryWrapper _repositoryWrapper;
+        private readonly ICarRepository _repository;
 
-        public CarService(IRepositoryWrapper repositoryWrapper)
+        public CarService(ICarRepository repository)
         {
-            _repositoryWrapper = repositoryWrapper;
+            _repository = repository;
         }
 
         public IEnumerable<Car> all()
         {
-            return this._repositoryWrapper.CarRepository.All().AsEnumerable();
+            return _repository.All();
         }
 
         public bool create(Car entity)
         {
-            this._repositoryWrapper.CarRepository.Create(entity);
+            _repository.Insert(entity);
             return true;
         }
 
         public Car read(int id)
         {
-            return this._repositoryWrapper.CarRepository.Get(id);
+            return _repository.Get(id);
         }
 
         public bool update(Car entity)
         {
-            this._repositoryWrapper.CarRepository.Update(entity);
+            _repository.Update(entity);
             return true;
         }
 
         public bool delete(int id)
         {
-            this._repositoryWrapper.CarRepository.Delete(id);
+            _repository.Delete(id);
             return true;
         }
     }

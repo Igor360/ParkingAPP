@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Contexts;
 using WebApplication1.Helpers;
 using WebApplication1.Models;
+using WebApplication1.Repository.ADO;
 using WebApplication1.Repository.Base;
 using WebApplication1.Services;
 
@@ -32,7 +33,6 @@ namespace WebApplication1
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -44,7 +44,7 @@ namespace WebApplication1
             
             var appSettingSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingSection);
-
+            
             var appSettings = appSettingSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
@@ -64,6 +64,7 @@ namespace WebApplication1
                         ValidateAudience = false
                     };
                 });
+            services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IClientService, ClientService>();
