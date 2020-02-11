@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
-using WebApplication1.Repository.ADO;
+using WebApplication1.Repository;
 
 namespace WebApplication1.Services
 {
     public class CarService : ICarService
     {
-
         private readonly ICarRepository _repository;
 
         public CarService(ICarRepository repository)
@@ -22,7 +21,7 @@ namespace WebApplication1.Services
 
         public bool create(Car entity)
         {
-            _repository.Insert(entity);
+            _repository.Create(entity);
             return true;
         }
 

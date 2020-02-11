@@ -1,7 +1,6 @@
 using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Repository.ADO;
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers

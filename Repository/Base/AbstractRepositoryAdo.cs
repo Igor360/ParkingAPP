@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using MySql.Data.MySqlClient;
 using WebApplication1.Models;
 
 namespace WebApplication1.Repository.Base
@@ -11,21 +12,22 @@ namespace WebApplication1.Repository.Base
     public abstract class AbstractRepositoryAdo<TEntity> : IRepositoryAdo<TEntity>
     {
 
-        private readonly SqlConnection _connection;
+        private readonly MySqlConnection _connection;
 
         public AbstractRepositoryAdo()
         {
-            var _connectionString = ConfigurationManager.ConnectionStrings["defaultConnection"].ConnectionString;
-            _connection =  new SqlConnection(_connectionString);
+//            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var _connectionString = "Server=database;Port=3306;Database=parking_db;User=root;Password=";
+            _connection =  new MySqlConnection(_connectionString);
         }
 
         public int Insert(TEntity entity)
         {
             int i = 0;
-
             using (var cmd = _connection.CreateCommand())
             {
                 InsertCommand(entity, cmd);
+                _connection.Open();
                 i = cmd.ExecuteNonQuery();
             }
 
@@ -35,10 +37,10 @@ namespace WebApplication1.Repository.Base
         public int Update(TEntity entity)
         {
             int i = 0;
-
             using (var cmd = _connection.CreateCommand())
             {
                 UpdateCommand(entity, cmd);
+                _connection.Open();
                 i = cmd.ExecuteNonQuery();
             }
 
@@ -51,6 +53,7 @@ namespace WebApplication1.Repository.Base
             using (var cmd = _connection.CreateCommand())
             {
                 DeleteCommand(id, cmd);
+                _connection.Open();
                 i = cmd.ExecuteNonQuery();
             }
 
@@ -61,8 +64,9 @@ namespace WebApplication1.Repository.Base
         {
             using (var cmd = _connection.CreateCommand())
             {
+                _connection.Open();
                 AllCommand(cmd);
-                using (SqlDataReader sqlDataReader = cmd.ExecuteReader())
+                using (MySqlDataReader sqlDataReader = cmd.ExecuteReader())
                 {
                     return Maps(sqlDataReader);
                 }
@@ -73,8 +77,9 @@ namespace WebApplication1.Repository.Base
         {
             using (var cmd = _connection.CreateCommand())
             {
+                _connection.Open();
                 GetCommand(id, cmd);
-                using (SqlDataReader sqlDataReader = cmd.ExecuteReader())
+                using (MySqlDataReader sqlDataReader = cmd.ExecuteReader())
                 {
                     return Map(sqlDataReader);
                 }
@@ -89,15 +94,15 @@ namespace WebApplication1.Repository.Base
             }
         }
 
-        protected abstract void InsertCommand(TEntity entity, SqlCommand cmd);
-        protected abstract void UpdateCommand(TEntity entity, SqlCommand cmd);
-        protected abstract void DeleteCommand(int id, SqlCommand cmd);
+        protected abstract void InsertCommand(TEntity entity, MySqlCommand cmd);
+        protected abstract void UpdateCommand(TEntity entity, MySqlCommand cmd);
+        protected abstract void DeleteCommand(int id, MySqlCommand cmd);
 
-        protected abstract void AllCommand(SqlCommand cmd);
+        protected abstract void AllCommand(MySqlCommand cmd);
         
-        protected abstract void GetCommand(int id, SqlCommand cmd);
+        protected abstract void GetCommand(int id, MySqlCommand cmd);
         
-        protected abstract TEntity Map(SqlDataReader reader);
-        protected abstract List<TEntity> Maps(SqlDataReader reader);
+        protected abstract TEntity Map(MySqlDataReader reader);
+        protected abstract List<TEntity> Maps(MySqlDataReader reader);
     }
 }
