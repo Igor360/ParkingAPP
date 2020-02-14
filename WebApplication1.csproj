@@ -19,4 +19,8 @@
         <PackageReference Include="MySql.Web" Version="8.0.17" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Front" />
+    </ItemGroup>
+
 </Project>
