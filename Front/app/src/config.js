@@ -1,4 +1,4 @@
-export const API_URL = '0.0.0.0:8080';
+export const API_URL = 'http://0.0.0.0:8000';
 export const API_SLUG = '/api';
 export const ID_TOKEN_KEY = 'AUTH_TOKEN';
 export const COMPANY_TYPE = 'company';

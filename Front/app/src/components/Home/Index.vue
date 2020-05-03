@@ -98,7 +98,7 @@
 
     export default {
         name: "Home",
-        components: {Carousel}
+        components: {Carousel},
     }
 </script>
 

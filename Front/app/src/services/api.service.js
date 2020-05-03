@@ -19,21 +19,21 @@ const ApiService = {
         });
     },
     get(resource, slug = "") {
-        return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+        return Vue.axios.get(`${slug}/${resource}`).catch(error => {
             throw new Error(`Api service error: ${error}`);
         });
     },
     post(resource, slug = "", param) {
-        return Vue.axios.post(`${resource}/${slug}`, param);
+        return Vue.axios.post(`${slug}/${resource}`, param);
     },
     update(resource, slug = "", param) {
-        return Vue.axios.put(`${resource}/${slug}`, param);
+        return Vue.axios.put(`${slug}/${resource}`, param);
     },
     put(resource, slug = "", param) {
-        return Vue.axios.put(`${resource}/${slug}`, param);
+        return Vue.axios.put(`${slug}/${resource}`, param);
     },
     delete(resource, slug = "") {
-     return Vue.axios.delete(`${resource}/${slug}`).catch(error => {
+     return Vue.axios.delete(`${slug}/${resource}`).catch(error => {
          throw new Error(`Api service error : ${error}`);
      });
     }

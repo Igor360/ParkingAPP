@@ -10,6 +10,7 @@
         <PackageReference Include="EntityFramework" Version="6.2.0" />
         <PackageReference Include="MailKit" Version="2.4.1" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="MySql.Data" Version="8.0.17" />
         <PackageReference Include="MySql.Data.Entity" Version="7.0.7-m61" />
@@ -17,6 +18,7 @@
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
         <PackageReference Include="MySql.Data.EntityFrameworkCore.Design" Version="8.0.17" />
         <PackageReference Include="MySql.Web" Version="8.0.17" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>

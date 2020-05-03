@@ -17,4 +17,10 @@
 
 </script>
 
-<style></style>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+    body {
+        font-family: 'PT Sans' ;
+    }
+</style>

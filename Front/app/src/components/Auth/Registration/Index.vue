@@ -14,10 +14,9 @@
                     </div>
                 </div>
                 <component :is="selected"></component>
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="accept-terms"> Accept terms of use
-                    </label>
+                <div class="custom-control custom-checkbox pb-3">
+                    <input type="checkbox" class="custom-control-input" value="accept-terms"  id = "same-address"/>
+                    <label class="custom-control-label" for="same-address"> Accept terms of use</label>
                 </div>
                 <button class="btn btn-lg btn-outline-warning btn-block" type="submit">Sign in</button>
             </form>
@@ -43,4 +42,7 @@
 </script>
 
 <style scoped>
+    .form {
+        margin-top: 1em;
+    }
 </style>

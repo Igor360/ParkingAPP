@@ -3,9 +3,8 @@ COPY . /app
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y mysql-client
-
 RUN ["dotnet", "restore"]
 RUN ["dotnet", "build"]
 EXPOSE 80/tcp
-RUN chmod +x ./entrypoint.sh 
-CMD /bin/bash ./entrypoint.sh database:3306
+RUN chmod +x ./Docker/app/entrypoint.sh 
+CMD /bin/bash ./Docker/app/entrypoint.sh database:3306

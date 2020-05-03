@@ -64,7 +64,7 @@
         background-clip: padding-box;
         border: none;
     }
-
+    
     .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
         color: rgba(0, 0, 0, .9);
         border-bottom: 1px solid;

@@ -1,0 +1,49 @@
+version: "3"
+
+networks:
+  base: 
+    driver: bridge
+
+services:
+  
+  # The Database
+  database:
+    container_name: parking_now_db
+    image: mysql/mysql-server:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./database/dump.sql:/docker-entrypoint-initdb.d/setup.sql
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=AHtCmBQ4S6zyZfUf"
+      - "MYSQL_DATABASE=parking_db"
+    ports:
+      - "33061:3306"
+    networks:
+      - base
+
+  # The Application 
+  application:
+    container_name: parking_now_app
+    build:
+      context: ..
+      dockerfile: ./Docker/app/Dockerfile
+    ports:
+      - "8000:5000"
+    depends_on:
+      - database
+    restart: on-failure
+    networks:
+      - base
+
+      # Front end part of application 
+      #  front:
+      #    container_name: parking_now_front
+      #    build:
+      #      context: ..
+      #      dockerfile: ./Docker/front/Dockerfile
+      #    depends_on:
+      #      - parking_now_app
+
+volumes:
+  dbdata:

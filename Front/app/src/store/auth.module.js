@@ -22,9 +22,14 @@ const getters = {
 const actions = {
     [LOGIN](context, credentials) {
         return new Promise(resolve => {
-            ApiService.post('/login', API_SLUG, {user: credentials}).then(({data}) => {
+            ApiService.post('Users/authenticate', API_SLUG, {
+                Name: credentials.email,
+                Password: credentials.password
+            }).then(({data}) => {
                 context.commit(SET_AUTH, data.user);
                 resolve(data);
+            }).catch(() => {
+                context.commit(SET_ERROR, { Error : "Something went wrong!"});
             });
         });
     },
@@ -33,7 +38,7 @@ const actions = {
     },
     [REGISTER](context, credentials) {
         return new Promise(resolve => {
-            ApiService.post('/register', API_SLUG, {user: credentials}).then(({data}) => {
+            ApiService.post('Users/register', API_SLUG, {user: credentials}).then(({data}) => {
                 context.commit(SET_AUTH, data.user);
                 resolve(data);
             }).catch(({response}) => {

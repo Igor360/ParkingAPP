@@ -10,13 +10,15 @@ export default new VueRouter({
             path: "/",
             component: () => import("@/components/Home/Index"),
             meta: {
+                title : 'Home',
                 guest: true
             }
         },
         {
             path: "/login",
-            component: () => import("@/components/Auth/Login/Index"),
+            component: () => import("@/components/Auth/Login/Index"),   
             meta: {
+                title : 'Login',
                 guest: true
             }
         },
@@ -24,6 +26,7 @@ export default new VueRouter({
             path: "/register",
             component: () => import("@/components/Auth/Registration/Index"),
             meta: {
+                title : 'Register',
                 guest: true
             }
         },
@@ -31,6 +34,7 @@ export default new VueRouter({
             path: "/companies",
             component: () => import("@/components/Companies/Index"),
             meta: {
+                title: 'Companies',
                 guest: true
             }
         },
@@ -38,6 +42,23 @@ export default new VueRouter({
             path: "/parking_places",
             component: () => import("@/components/ParkingPlaces/Index"),
             meta: {
+                title: "Parking Places",
+                guest: true
+            }
+        },
+        {
+            path: "/terms",
+            component: () => import("@/components/Terms/Index"),
+            meta: {
+                title: "Terms",
+                guest: true
+            }
+        },
+        {
+            path: "/policy",
+            component: () => import("@/components/Policy/Index"),
+            meta: {
+                title : "Policy",
                 guest: true
             }
         },
@@ -45,6 +66,7 @@ export default new VueRouter({
             path: "/user/profile",
             component: () => import("@/components/User/Profile/Index"),
             meta: {
+                title: "Profile",
                 requiresAuth: true,
                 type: USER_TYPE,
             }

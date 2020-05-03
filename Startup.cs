@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using WebApplication1.Contexts;
 using WebApplication1.Helpers;
 using WebApplication1.Repository;
@@ -29,12 +30,12 @@ namespace WebApplication1
                 .AddSessionStateTempDataProvider();
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<ParkingContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSession();
-            
+
             var appSettingSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingSection);
-            
+
             var appSettings = appSettingSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
@@ -65,6 +66,11 @@ namespace WebApplication1
             services.AddScoped<IParkingService, ParkingService>();
             services.AddScoped<IParkingPositionService, ParkingPositionService>();
             services.AddScoped<IParkingTicketsService, ParkingTicketsService>();
+            services.AddCors();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ParkingNow", Version = "v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,15 +85,16 @@ namespace WebApplication1
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseSession();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "ParkingNow API"); });
+            app.UseCors(options => { options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials(); });
         }
-        
-        
     }
-    
 }

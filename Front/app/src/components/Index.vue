@@ -1,11 +1,13 @@
 <template>
     <main v-if="!isAuth && this.$route.meta.guest" role="main">
         <Header/>
+        <notifications group="main" position="top left"/>
         <router-view></router-view>
         <Footer/>
     </main>
     <main v-else-if="this.$route.meta.requiresAuth">
         <AuthHeader/>
+        <notifications group="main" position="top left" />
         <router-view></router-view>
     </main>
     <main v-else>
@@ -23,7 +25,7 @@
     export default {
         name: "Index",
         components: {NotFound, Footer, Header, AuthHeader},
-        computed: {...mapGetters(['isAuth'])}
+        computed: {...mapGetters(['isAuth'])},
     }
 </script>
 

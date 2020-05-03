@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj": {}
+    "/media/igor/b083761c-aacc-4f16-afa2-57b717551b61/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj": {}
   },
   "projects": {
-    "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj": {
+    "/media/igor/b083761c-aacc-4f16-afa2-57b717551b61/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
+        "projectUniqueName": "/media/igor/b083761c-aacc-4f16-afa2-57b717551b61/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "/home/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
+        "projectPath": "/media/igor/b083761c-aacc-4f16-afa2-57b717551b61/igor/RiderProjects/WebApplication1/WebApplication1/WebApplication1.csproj",
         "packagesPath": "/home/igor/.nuget/packages/",
-        "outputPath": "/home/igor/RiderProjects/WebApplication1/WebApplication1/obj/",
+        "outputPath": "/media/igor/b083761c-aacc-4f16-afa2-57b717551b61/igor/RiderProjects/WebApplication1/WebApplication1/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/home/igor/.config/NuGet/NuGet.Config"
+          "/home/igor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -57,6 +54,10 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
@@ -91,13 +92,23 @@
             "MySql.Web": {
               "target": "Package",
               "version": "[8.0.17, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
         }
       }
     }
